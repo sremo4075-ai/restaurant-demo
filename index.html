@@ -1,1 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The Urban Fork | Modern Restaurant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    body { color: #222; background-color: #fcfcfc; line-height: 1.5; }
+
+    /* Sticky Navigation */
+    header {
+      background: #121212;
+      color: #fff;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .logo { font-size: 1.35rem; font-weight: 800; color: #ff6b35; letter-spacing: 0.5px; }
+    .call-btn {
+      background: #ff6b35;
+      color: #fff;
+      padding: 0.45rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 2.5rem 1.2rem;
+    }
+    .hero h1 { font-size: 2.2rem; margin-bottom: 0.8rem; font-weight: 800; line-height: 1.2; }
+    .hero p { font-size: 1rem; max-width: 500px; margin-bottom: 1.5rem; color: #ddd; }
+    .hero-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      background: #ff6b35;
+      color: #fff;
+      padding: 0.75rem 1.6rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+    }
+
+    /* Quick Badges */
+    .badges {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      padding: 1.8rem 5%;
+      background: #fff;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    .badge-card { padding: 0.5rem; }
+    .badge-card h4 { font-size: 1rem; color: #111; margin-bottom: 0.2rem; }
+    .badge-card p { font-size: 0.8rem; color: #777; }
+
+    /* Menu Section */
+    .menu { padding: 3rem 5%; }
+    .title { text-align: center; font-size: 1.8rem; margin-bottom: 0.4rem; color: #111; }
+    .subtitle { text-align: center; font-size: 0.9rem; color: #666; margin-bottom: 2rem; }
+    
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-body { padding: 1.2rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }
+    .card-header h3 { font-size: 1.1rem; color: #111; }
+    .price { color: #ff6b35; font-weight: 700; font-size: 1.1rem; }
+    .card-body p { color: #666; font-size: 0.85rem; margin-bottom: 1rem; flex-grow: 1; }
+    .order-btn {
+      width: 100%;
+      background: #f4f4f4;
+      color: #222;
+      text-align: center;
+      padding: 0.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: 1px solid #e0e0e0;
+    }
+
+    /* Reservation Form */
+    .reservation {
+      background: #181818;
+      color: #fff;
+      padding: 3rem 1.2rem;
+      text-align: center;
+      border-radius: 16px;
+      margin: 1rem 5% 3rem;
+    }
+    .reservation h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .reservation p { color: #aaa; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .form-group input, .form-group select {
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #252525;
+      color: #fff;
+      font-size: 0.95rem;
+      width: 100%;
+    }
+    .form-group input::placeholder { color: #888; }
+    .form-group button { width: 100%; margin-top: 0.5rem; }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #777;
+      text-align: center;
+      padding: 2rem 1rem 5rem;
+      font-size: 0.8rem;
+    }
+
+    /* Floating WhatsApp Button for Mobile */
+    .floating-wa {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.9rem; }
+      .hero { min-height: 55vh; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">URBAN FORK</div>
+    <a href="tel:+919876543210" class="call-btn">📞 Call Now</a>
+  </header>
+
+  <section class="hero">
+    <h1>Flavors Crafted With Passion</h1>
+    <p>Authentic cuisine, cozy vibes, and an unforgettable dining experience.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn">View Menu</a>
+      <a href="#reserve" class="btn btn-outline">Book Table</a>
+    </div>
+  </section>
+
+  <section class="badges">
+    <div class="badge-card">
+      <h4>⚡ Fast Service</h4>
+      <p>Average prep under 20 mins</p>
+    </div>
+    <div class="badge-card">
+      <h4>🌱 100% Fresh</h4>
+      <p>Daily picked organic produce</p>
+    </div>
+    <div class="badge-card">
+      <h4>⭐ 4.8 Rating</h4>
+      <p>Over 1,200+ local foodies</p>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <h2 class="title">Our Top Picks</h2>
+    <p class="subtitle">Handcrafted dishes loved by our regulars</p>
+    
+    <div class="menu-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="Pizza">
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Woodfire Margherita</h3>
+            <span class="price">₹399</span>
+          </div>
+          <p>Hand-tossed crust, fresh buffalo mozzarella, crushed plum tomatoes and aromatic basil.</p>
+          <a href="#reserve" class="order-btn">Order / Dine-In</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="BBQ Dish">
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Smoked BBQ Ribs</h3>
+            <span class="price">₹549</span>
+          </div>
+          <p>Tender slow-smoked platter brushed with hickory honey glaze and crisp herb slaw.</p>
+          <a href="#reserve" class="order-btn">Order / Dine-In</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80" alt="Dessert">
+        <div class="card-body">
+          <div class="card-header">
+            <h3>Espresso Mousse</h3>
+            <span class="price">₹280</span>
+          </div>
+          <p>Rich dark Belgian chocolate layered with espresso whipped mousse and crunch.</p>
+          <a href="#reserve" class="order-btn">Order / Dine-In</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reservation" id="reserve">
+    <h2>Book a Table</h2>
+    <p>Instant table confirmation for lunch & dinner</p>
+    
+    <form class="form-group" onsubmit="event.preventDefault(); alert('Reservation submitted! We will call to confirm.');">
+      <input type="text" placeholder="Full Name" required>
+      <input type="tel" placeholder="Mobile Number" required>
+      <select required>
+        <option value="" disabled selected>Number of Guests</option>
+        <option value="2">2 Guests</option>
+        <option value="4">4 Guests</option>
+        <option value="6+">6+ Guests (Family)</option>
+      </select>
+      <input type="datetime-local" required>
+      <button type="submit" class="btn">Confirm Booking</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2026 Urban Fork Restaurant Demo. Built for client showcase.</p>
+  </footer>
+
+  <!-- Quick WhatsApp Contact -->
+  <a href="https://wa.me/" class="floating-wa" target="_blank">
+    💬 WhatsApp
+  </a>
+
+</body>
+  </html>
 
